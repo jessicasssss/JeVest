@@ -19,6 +19,11 @@ const userModel = {
     logoutStatus: (userid, callback) =>{
         const sql = `UPDATE msuser SET isloggedin = false WHERE id =?`;
         db.query(sql, [userid], callback)
+    },
+
+    profile: (userid, callback) =>{
+        const sql = `SELECT * FROM msuser WHERE id=?`;
+        db.query(sql, [userid], callback);
     }
 }
 
