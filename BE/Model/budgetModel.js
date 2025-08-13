@@ -16,6 +16,11 @@ const budgetModel = {
     getBudget: (userid, month, callback) =>{
         const sql = `SELECT amount, remaining FROM msbudget WHERE userid =? AND month =?`;
         db.query(sql, [userid, month], callback);
+    }, 
+
+    updateRemaining: (userid, month, remaining, callback) =>{
+        const sql = `UPDATE msbudget SET remaining = ? WHERE userid =? AND month=?`;
+        db.query(sql, [remaining,userid, month], callback);
     }
 
 }

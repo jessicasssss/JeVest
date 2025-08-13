@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2025 at 10:17 AM
+-- Generation Time: Aug 13, 2025 at 12:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `msbudget` (
   `remaining` decimal(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `msbudget`
+--
+
+INSERT INTO `msbudget` (`id`, `userid`, `month`, `amount`, `remaining`) VALUES
+(1, 3, '2025-08', 6000000.00, 4657000.00);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +53,25 @@ CREATE TABLE `mscategory` (
   `category` varchar(100) NOT NULL,
   `type` enum('expense','income') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mscategory`
+--
+
+INSERT INTO `mscategory` (`id`, `category`, `type`) VALUES
+(1, 'Food & Beverage', 'expense'),
+(2, 'Transportation', 'expense'),
+(3, 'Entertainment', 'expense'),
+(4, 'Bills & Utilities', 'expense'),
+(5, 'Shopping', 'expense'),
+(6, 'Health', 'expense'),
+(7, 'Education', 'expense'),
+(8, 'Others', 'expense'),
+(9, 'Salary', 'income'),
+(10, 'Bonus', 'income'),
+(11, 'Investment', 'income'),
+(12, 'Gift', 'income'),
+(13, 'Others', 'income');
 
 -- --------------------------------------------------------
 
@@ -59,8 +85,17 @@ CREATE TABLE `mstransaction` (
   `date` date NOT NULL,
   `categoryid` int(11) DEFAULT NULL,
   `amount` decimal(15,2) NOT NULL,
-  `note` text DEFAULT NULL
+  `note` text DEFAULT NULL,
+  `remaining_after` decimal(15,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mstransaction`
+--
+
+INSERT INTO `mstransaction` (`id`, `userid`, `date`, `categoryid`, `amount`, `note`, `remaining_after`) VALUES
+(1, 3, '2025-08-01', 8, 1200000.00, 'Beli sepatu baru Puma Bella', 4800000.00),
+(2, 3, '2025-08-08', 5, 143000.00, 'Earbuds Anker', 4657000.00);
 
 -- --------------------------------------------------------
 
@@ -82,7 +117,7 @@ CREATE TABLE `msuser` (
 
 INSERT INTO `msuser` (`id`, `username`, `useremail`, `userpassword`, `isloggedin`) VALUES
 (1, 'jess', 'test', '12345678', 0),
-(3, 'jess', 'test1', '$2b$10$JyFhIdiK2Ggr8OHP44ycOOhSaKAwgBI1L1VHxykIguH.xs.uNRMt6', 0),
+(3, 'jess', 'test1', '$2b$10$JyFhIdiK2Ggr8OHP44ycOOhSaKAwgBI1L1VHxykIguH.xs.uNRMt6', 1),
 (4, 'sejj', 'test2', '$2b$10$/FMgobLY/xeF3pTFMq/Si.MLlwhaqnKrAH08QIZy0StyZHb1D20qe', 0);
 
 --
@@ -125,19 +160,19 @@ ALTER TABLE `msuser`
 -- AUTO_INCREMENT for table `msbudget`
 --
 ALTER TABLE `msbudget`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mscategory`
 --
 ALTER TABLE `mscategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `mstransaction`
 --
 ALTER TABLE `mstransaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `msuser`
