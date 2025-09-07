@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2025 at 12:09 PM
+-- Generation Time: Sep 07, 2025 at 10:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,11 @@ CREATE TABLE `msbudget` (
 --
 
 INSERT INTO `msbudget` (`id`, `userid`, `month`, `amount`, `remaining`) VALUES
-(1, 3, '2025-08', 6000000.00, 4657000.00);
+(3, 1, '2025-09', 0.00, 0.00),
+(4, 3, '2025-09', 800000.00, 800000.00),
+(5, 4, '2025-09', 0.00, 0.00),
+(7, 11, '2025-09', 0.00, 0.00),
+(8, 12, '2025-09', 9000000.00, 8961400.00);
 
 -- --------------------------------------------------------
 
@@ -95,7 +99,23 @@ CREATE TABLE `mstransaction` (
 
 INSERT INTO `mstransaction` (`id`, `userid`, `date`, `categoryid`, `amount`, `note`, `remaining_after`) VALUES
 (1, 3, '2025-08-01', 8, 1200000.00, 'Beli sepatu baru Puma Bella', 4800000.00),
-(2, 3, '2025-08-08', 5, 143000.00, 'Earbuds Anker', 4657000.00);
+(2, 3, '2025-08-08', 5, 143000.00, 'Earbuds Anker', 4657000.00),
+(3, 3, '2025-09-02', 3, 50000.00, 'Netflix', 9950000.00),
+(4, 3, '2025-09-01', 6, 100000.00, 'Tambal gigi', 9850000.00),
+(5, 3, '2025-09-02', 3, 100000.00, 'Mala', 9750000.00),
+(6, 3, '2025-09-09', 1, 100000.00, 'mala pt.2', 9650000.00),
+(7, 3, '2025-09-02', 9, 1000000.00, 'Magang', 9650000.00),
+(8, 3, '2025-09-02', 10, 200000.00, 'Saham', 9650000.00),
+(9, 3, '2025-09-02', 9, 100000.00, 'saham', 9650000.00),
+(10, 3, '2025-09-02', 9, 100000.00, 'sahammmm', 9650000.00),
+(11, 3, '2025-09-02', 9, 100000.00, 'sahammmm', 9650000.00),
+(12, 3, '2025-09-02', 9, 100000.00, 'sahammmm', 0.00),
+(13, 3, '2025-09-02', 9, 100000.00, 'sahammmm', 100000.00),
+(14, 3, '2025-09-02', 9, 100000.00, 'sahammmm', 200000.00),
+(15, 3, '2025-09-02', 12, 20000.00, 'YEY', 9670000.00),
+(16, 3, '2025-09-02', 2, 27500.00, 'gojek dari bca ke rumah', 9642500.00),
+(21, 12, '2025-09-06', 2, 138600.00, 'CGK to Home', 10661400.00),
+(22, 12, '2025-09-06', 12, 100000.00, 'Birthday Gift', 10761400.00);
 
 -- --------------------------------------------------------
 
@@ -117,8 +137,10 @@ CREATE TABLE `msuser` (
 
 INSERT INTO `msuser` (`id`, `username`, `useremail`, `userpassword`, `isloggedin`) VALUES
 (1, 'jess', 'test', '12345678', 0),
-(3, 'jess', 'test1', '$2b$10$JyFhIdiK2Ggr8OHP44ycOOhSaKAwgBI1L1VHxykIguH.xs.uNRMt6', 1),
-(4, 'sejj', 'test2', '$2b$10$/FMgobLY/xeF3pTFMq/Si.MLlwhaqnKrAH08QIZy0StyZHb1D20qe', 0);
+(3, 'Jessica', 'test1@gmail.com', '$2b$10$m36P0ZdqMETFRmL9Sw9dJuaOjSLXVNATYne.SCHKHAnla8j29OC.y', 0),
+(4, 'sejj', 'test2', '$2b$10$/FMgobLY/xeF3pTFMq/Si.MLlwhaqnKrAH08QIZy0StyZHb1D20qe', 0),
+(11, 'jesbell', '2005jessicabella@gmail.com', '$2b$10$9YMcT0hG1schsEkUevhJsOgfCuAIokZuxcAjbbL9wx14UDag1UdU6', 0),
+(12, 'JESBEL', 'bellsjs2005@gmail.com', '$2b$10$jkTZalQb2eVkNxCzWKsL7ujq4LtXBQYrGUyclYO4x./HPGfsSWMqK', 0);
 
 --
 -- Indexes for dumped tables
@@ -160,7 +182,7 @@ ALTER TABLE `msuser`
 -- AUTO_INCREMENT for table `msbudget`
 --
 ALTER TABLE `msbudget`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `mscategory`
@@ -172,13 +194,13 @@ ALTER TABLE `mscategory`
 -- AUTO_INCREMENT for table `mstransaction`
 --
 ALTER TABLE `mstransaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `msuser`
 --
 ALTER TABLE `msuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

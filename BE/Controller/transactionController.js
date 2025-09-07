@@ -4,8 +4,9 @@ const budgetModel = require("../Model/budgetModel");
 
 exports.insert = (req, res) =>{
     const userid = req.user.userid;
-    console.log(`userid: ${userid}`)
-    const { date, categoryid, amount, note } = req.body;
+    const { date, categoryid: categoryIdRaw, amount: amountRaw, note } = req.body;
+    const categoryid = Number(categoryIdRaw);
+    const amount = Number(amountRaw);
 
     const month_date = moment(date).format('YYYY-MM');
 
@@ -19,13 +20,15 @@ exports.insert = (req, res) =>{
         }
 
         const budget = result[0];
+        const remaining = parseFloat(budget.remaining);
 
         let remaining_after;
         if(categoryid <= 8){
-            remaining_after = budget.remaining - amount;
+            remaining_after = remaining - amount;
         }
         else{
-            remaining_after = budget.remaining + amount;
+            remaining_after = remaining + amount;
+            console.log(`masuk ${remaining_after}`);
         }
 
         transactionModel.insert(userid, date, categoryid, amount, note, remaining_after, (err) =>{
@@ -79,6 +82,28 @@ exports.viewMonth = (req, res) =>{
 
         if(result.length === 0){
             return res.status(404).json({message:  `404 No Transaction Found!`});
+        }
+
+        const formatted = result.map(row => ({
+            ...row,
+            date: moment(row.date).format('YYYY-MM-DD')
+        }));
+
+        return res.status(200).json({result: formatted});
+    })
+}
+
+exports.chart = (req, res) => {
+    const userid = req.user.userid;
+    const month = req.body.month;
+
+    transactionModel.chart(userid, month, (err, result) => {
+        if(err){
+            return res.status(400).json({message: err.message});
+        }
+
+        if(result.length === 0){
+            return res.status(404).json({message: "No result!"})
         }
 
         return res.status(200).json({result});

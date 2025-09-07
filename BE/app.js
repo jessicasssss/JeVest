@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+require('./Job/BudgetJob');
 
 
 const authRoute = require("./Route/authRoute");

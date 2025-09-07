@@ -24,6 +24,16 @@ const userModel = {
     profile: (userid, callback) =>{
         const sql = `SELECT * FROM msuser WHERE id=?`;
         db.query(sql, [userid], callback);
+    },
+
+    setAccount: (userid, username, callback) => {
+        const sql = `UPDATE msuser SET username = ? WHERE id =?`;
+        db.query(sql, [username, userid], callback);
+    },
+
+    setPassword: (userid, userpassword, callback) => {
+        const sql = `UPDATE msuser SET userpassword = ? WHERE id =?`;
+        db.query(sql, [userpassword, userid], callback);
     }
 }
 

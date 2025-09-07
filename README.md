@@ -1,2 +1,2 @@
-# JeVest
-Finance Tracker app
+# J E N C E
+Simple Finance Tracker app

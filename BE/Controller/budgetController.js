@@ -1,6 +1,19 @@
 const moment = require("moment");
 const budgetModel = require("../Model/budgetModel");
 
+exports.initialBudget = (req, res) => {
+    const userid = req.user.userid;
+    const month = moment().format('YYYY-MM');
+
+    budgetModel.insert(userid, month, 0, (err) => {
+        if(err){
+            return res.status(400).json({message: err.message})
+        }
+
+        return res.status(201).json({message: `Budget for ${month} successfully created!`})
+    })
+}
+
 exports.insert = (req,res) =>{
     const userid = req.user.userid;
     const month = moment().format('YYYY-MM');
@@ -18,7 +31,7 @@ exports.insert = (req,res) =>{
 exports.update = (req, res) =>{
     const userid = req.user.userid;
     const month = moment().format('YYYY-MM');
-    const budget = req.body.budget;
+    const amount = req.body.amount;
 
     budgetModel.getBudget(userid, month, (err, result) =>{
         if(err){
@@ -30,9 +43,9 @@ exports.update = (req, res) =>{
         }
 
         const budget_before = result[0];
-        const remaining = budget - (budget_before.amount - budget_before.remaining);
+        const remaining = amount - (budget_before.amount - budget_before.remaining);
 
-        budgetModel.update(userid, month, budget, remaining, (err, result) =>{
+        budgetModel.update(userid, month, amount, remaining, (err, result) =>{
             if(err){
                 return res.status(400).json({message: err.message});
             }

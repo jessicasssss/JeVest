@@ -5,7 +5,8 @@ require("dotenv").config({path: path.join(__dirname, "../../.env")});
 
 
 function TokenAuth(req, res, next) {
-    const token = req.cookies.token;
+    const bearerToken = req.headers['authorization'];
+    const token = bearerToken?.startsWith("Bearer ") ? bearerToken.split(' ')[1] : req.cookies.token;
 
     if(!token){
         return res.status(401).json({message: "Please Login or register!"});
